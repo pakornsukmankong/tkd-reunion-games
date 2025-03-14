@@ -9,4 +9,14 @@ const HomePage = () => {
   )
 }
 
+// If you're using SSG, keep only getStaticProps and remove getServerSideProps
+export async function getStaticProps() {
+  // Your static data fetching logic here
+  return {
+    props: {
+      // Your data here
+    },
+  };
+}
+
 export default HomePage

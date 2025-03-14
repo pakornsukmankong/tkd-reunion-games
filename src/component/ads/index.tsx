@@ -1,16 +1,9 @@
+import { Box, Text } from "@chakra-ui/react"
+
 const Ads = () => {
   return (
     <>
-      <div
-        style={{
-          border: '1px solid white',
-          borderColor: 'red',
-          width: '100%',
-          height: '100px',
-          backgroundColor: 'red',
-          marginBottom: '120px',
-        }}
-      >
+      <Box position='absolute' width='30%' >
         <a
           href="https://www.sbobetonline24.com/%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2-sbobet/"
           target="_blank"
@@ -21,17 +14,8 @@ const Ads = () => {
             height="200px"
           />
         </a>
-      </div>
-      <div
-        style={{
-          border: '1px solid white',
-          borderColor: 'red',
-          width: '100%',
-          height: '100px',
-          backgroundColor: 'red',
-          marginBottom: '120px',
-        }}
-      >
+      </Box>
+      <Box position='absolute' width='30%' top={300}>
         <a href="https://dookeela.live/" target="_blank">
           <img
             src="https://no-cdn.shortpixel.ai/client/to_avif,q_lossy,ret_wait/https://shortpixel.com/blog/wp-content/uploads/2023/12/nyan-cat.gif"
@@ -39,31 +23,19 @@ const Ads = () => {
             height="200px"
           />
         </a>
-      </div>
-      <div
-        style={{
-          border: '1px solid white',
-          borderColor: 'red',
-          width: '100%',
-          height: '100px',
-          backgroundColor: 'red',
-          marginBottom: '10px',
-        }}
-      >
-        <image>โฆษณา</image>
-      </div>
-      <div
-        style={{
-          border: '1px solid white',
-          borderColor: 'red',
-          width: '100%',
-          height: '100px',
-          backgroundColor: 'red',
-          marginBottom: '10px',
-        }}
-      >
-        <image>โฆษณา</image>
-      </div>
+      </Box>
+      <Box position='absolute' width='30%' top={600} backgroundColor='red' height='200px'>
+        <Text textAlign='center' color='white' fontSize={50}>โฆษณา</Text>
+      </Box>
+      <Box position='absolute' width='30%' right={0} backgroundColor='red' height='200px'>
+        <Text textAlign='center' color='white' fontSize={50}>โฆษณา</Text>
+      </Box>
+      <Box position='absolute' width='30%' right={0} top={300} backgroundColor='red' height='200px'>
+        <Text textAlign='center' color='white' fontSize={50}>โฆษณา</Text>
+      </Box>
+      <Box position='absolute' width='30%' right={0} top={600} backgroundColor='red' height='200px'>
+        <Text textAlign='center' color='white' fontSize={50}>โฆษณา</Text>
+      </Box>
     </>
   )
 }
