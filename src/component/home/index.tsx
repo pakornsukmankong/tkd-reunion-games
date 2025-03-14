@@ -3,13 +3,40 @@ import Ads from '../ads'
 import { keyframes } from '@emotion/react'
 import { useRouter } from 'next/router'
 import { Route } from '@/config/Route'
+import Swal from 'sweetalert2'
+import { useState } from 'react'
 
 const Home = () => {
   const Router = useRouter()
-  const isHidden = false
+  const [isHidden, setIsHidden] = useState(false)
 
   const navigateToPuzzlePage = () => {
     Router.push(Route.puzzle)
+  }
+
+  const onLolipopClick = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, do it!",
+      width: 600,
+      padding: "3em",
+      color: "#716add",
+      background: "#fff url(/images/trees.png)",
+      backdrop: `
+        rgba(0,0,123,0.4)
+        url("https://media.tenor.com/2roX3uxz_68AAAAM/cat-space.gif")
+        top
+        no-repeat
+      `
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setIsHidden((prev) => !prev) 
+      }
+    });
   }
 
   return (
