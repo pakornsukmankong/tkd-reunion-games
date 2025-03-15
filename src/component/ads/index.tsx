@@ -25,7 +25,13 @@ const Ads = () => {
         </a>
       </Box>
       <Box position='absolute' width='30%' top={600} backgroundColor='red' height='200px'>
-        <Text textAlign='center' color='white' fontSize={50}>โฆษณา</Text>
+      <a href="https://dookeela.live/" target="_blank">
+          <img
+            src="https://dookeela.live/images/UFAC4.gif"
+            width="100%"
+            height="200px"
+          />
+        </a>
       </Box>
       <Box position='absolute' width='30%' right={0} backgroundColor='red' height='200px'>
         <Text textAlign='center' color='white' fontSize={50}>โฆษณา</Text>

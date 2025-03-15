@@ -1,4 +1,6 @@
 export const Route = {
     home: '/home',
-    puzzle: '/puzzle'
+    puzzle: '/puzzle',
+    admin: '/admin',
+    result: '/result'
 }

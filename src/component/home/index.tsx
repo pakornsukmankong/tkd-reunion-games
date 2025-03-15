@@ -14,7 +14,7 @@ const Home = () => {
     Router.push(Route.puzzle)
   }
 
-  const onLolipopClick = () => {
+  const onHiddenClick = () => {
     Swal.fire({
       title: "Are you sure?",
       icon: "warning",
@@ -34,7 +34,7 @@ const Home = () => {
       `
     }).then((result) => {
       if (result.isConfirmed) {
-        setIsHidden((prev) => !prev) 
+        setIsHidden((prev) => !prev)
       }
     });
   }
@@ -58,10 +58,10 @@ const Home = () => {
         >
           <Image src="/images/game-start.png" alt="game-start" />
         </Box>
-        <Box cursor='pointer' position='absolute' bottom={0} left={0}>
+        <Box onClick={onHiddenClick} cursor='pointer' position='absolute' bottom={0} left={0}>
           <Image src="/images/lolipop-left.png" alt="game-start" />
         </Box>
-        <Box cursor='pointer' position='absolute' bottom={0} right={0}>
+        <Box onClick={onHiddenClick} cursor='pointer' position='absolute' bottom={0} right={0}>
           <Image src="/images/lolipop-right.png" alt="game-start" />
         </Box>
       </Flex>
