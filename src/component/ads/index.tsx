@@ -5,7 +5,7 @@ const Ads = () => {
     <>
       <Box position='absolute' width='30%' >
         <a
-          href="https://www.sbobetonline24.com/%E0%B8%97%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2-sbobet/"
+          href="https://www.instagram.com/twomenbagel.bkk/"
           target="_blank"
         >
           <Image

@@ -10,7 +10,7 @@ const Puzzle = () => {
   }
 
   const onNextClick = () => {
-    Router.push(Route.result)
+    Router.push(Route.taxi)
   }
 
   return (
