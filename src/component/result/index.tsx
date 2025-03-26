@@ -16,7 +16,9 @@ const Result = () => {
     if (typeof window !== 'undefined') {
       const storedData = localStorage.getItem(LOCAL_STORAGE_KEY)
       if (storedData) {
-        setTeamInfo(JSON.parse(storedData))
+        const parsedData = JSON.parse(storedData)
+        const sortedData = parsedData.sort((a: any, b: any) => b.point - a.point) // Sort by points in descending order
+        setTeamInfo(sortedData)
       }
     }
   }, [])
@@ -27,8 +29,11 @@ const Result = () => {
         <span>Result</span>
       </Text>
       <Stack marginTop="20px" gap={10}>
-        {teamInfo.map((item: any) => (
+        {teamInfo.map((item: any, index: number) => (
           <Flex key={item.id} gap={2} align="center" justifyContent="space-between">
+            <Text fontSize={20} fontWeight="500">
+              {index + 1}.
+            </Text>
             <Text fontSize={20} fontWeight="500">
               {item.name} :
             </Text>
