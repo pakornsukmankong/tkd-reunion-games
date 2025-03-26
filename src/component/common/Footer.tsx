@@ -11,7 +11,7 @@ const Footer = () => {
       textAlign="center"
     >
       <Text color="white" fontSize="sm">
-        This website created by Pakron Sukmankon (Floksong) &copy; {new Date().getFullYear()}. All rights reserved.
+        This website created by Pakron Sukmankong (Floksong) &copy; {new Date().getFullYear()}. All rights reserved.
       </Text>
     </Box>
   )

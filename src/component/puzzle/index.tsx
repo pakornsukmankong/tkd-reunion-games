@@ -1,6 +1,7 @@
 import { Route } from '@/config/Route'
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import NumberGridGame from './numberGridGame'
 
 const Puzzle = () => {
   const Router = useRouter()
@@ -20,6 +21,7 @@ const Puzzle = () => {
         <br />
         <span>Puzzle</span>
       </Text>
+      <NumberGridGame/>
       <Box onClick={goBack} cursor="pointer" position="absolute" bottom={0} left={0}>
         <Image src="/images/back.png" alt="game-start" />
       </Box>
