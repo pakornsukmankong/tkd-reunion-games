@@ -1,27 +1,59 @@
 import { decreaseUserScore, getNurseList, increaseUserScore } from '@/api/users'
 import { Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
+import Swal from 'sweetalert2'
 
 const Admin = () => {
   const [data, setData] = useState<any>([])
 
   useEffect(() => {
     const fetchNurses = async () => {
-      const res = await getNurseList()
-      setData(res?.data || [])
+      try {
+        const res = await getNurseList()
+        setData(res?.data || [])
+      } catch (error:any) {
+        console.log('fetchNurses', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to fetch nurses',
+        })
+      }
     }
 
     fetchNurses()
   }, [])
 
-  const onIncrease = (id: string) => {
-    increaseUserScore(id)
-    setData((prev: any) => prev.map((team: any) => (team.id === id ? { ...team, point: team.point + 1 } : team)))
+  const onIncrease = async (id: string) => {
+    try {
+      setData((prev: any) =>
+        prev.map((team: any) => (team.id === id ? { ...team, point: team.point + 1 } : team))
+      )
+      await increaseUserScore(id)
+    } catch (error: any) {
+      console.log('onIncrease', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to increase score',
+      })
+    }
   }
 
-  const onDecrease = (id: string) => {
-    decreaseUserScore(id)
-    setData((prev: any) => prev.map((team: any) => (team.id === id ? { ...team, point: Math.max(team.point - 1, 0) } : team)))
+  const onDecrease = async (id: string) => {
+    try {
+      setData((prev: any) =>
+        prev.map((team: any) => (team.id === id ? { ...team, point: Math.max(team.point - 1, 0) } : team))
+      )
+      await decreaseUserScore(id)
+    } catch (error: any) {
+      console.log('onDecrease', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to decrease score',
+      })
+    }
   }
 
   return (
