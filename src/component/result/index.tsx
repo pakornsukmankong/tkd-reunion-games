@@ -45,7 +45,7 @@ const Result = () => {
       <Text margin={0} fontSize={120} textAlign="center" fontWeight={800} color="white" lineHeight={1}>
         <span>Result</span>
       </Text>
-      <Stack marginTop="20px" gap={10}>
+      <Stack marginTop="20px" gap={8}>
         {teamInfo.map((item: any, index: number) => (
           <Flex key={item.id} gap={2} align="center" justifyContent="space-between">
             {renderIndex(index)}
