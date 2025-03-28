@@ -41,7 +41,7 @@ const Result = () => {
 
   return (
     <Flex width="100%" align="center" justify="center" flexDirection="column" gap="28px">
-      <Text margin={0} fontSize={120} textAlign="center" fontWeight={800} color="white" lineHeight={1}>
+      <Text margin={0} fontSize={{ md: 120 }} textAlign="center" fontWeight={800} color="white" lineHeight={1}>
         <span>Result</span>
       </Text>
       <Stack marginTop="20px" gap={8}>
