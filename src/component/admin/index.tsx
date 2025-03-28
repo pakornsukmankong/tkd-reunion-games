@@ -1,45 +1,59 @@
+import { decreaseUserScore, getNurseList, increaseUserScore } from '@/api/users'
 import { Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
-
-const LOCAL_STORAGE_KEY = 'teamInfo'
+import Swal from 'sweetalert2'
 
 const Admin = () => {
-  const [teamInfo, setTeamInfo] = useState([
-    { id: '1', name: 'โต๊ะ 1', point: 0 },
-    { id: '2', name: 'โต๊ะ 2', point: 0 },
-    { id: '3', name: 'โต๊ะ 3', point: 0 },
-    { id: '4', name: 'โต๊ะ 4', point: 0 },
-    { id: '5', name: 'โต๊ะ 5', point: 0 },
-    { id: '6', name: 'โต๊ะ 6', point: 0 },
-    { id: '7', name: 'โต๊ะ 7', point: 0 },
-    { id: '8', name: 'โต๊ะ 8', point: 0 },
-    { id: '9', name: 'โต๊ะ 9', point: 0 },
-    { id: '10', name: 'โต๊ะ 10', point: 0 },
-  ])
+  const [data, setData] = useState<any>([])
 
-  // Load from localStorage only on the client-side
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const storedData = localStorage.getItem(LOCAL_STORAGE_KEY)
-      if (storedData) {
-        setTeamInfo(JSON.parse(storedData))
+    const fetchNurses = async () => {
+      try {
+        const res = await getNurseList()
+        setData(res?.data || [])
+      } catch (error:any) {
+        console.log('fetchNurses', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to fetch nurses',
+        })
       }
     }
+
+    fetchNurses()
   }, [])
 
-  // Save to localStorage whenever teamInfo changes
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(teamInfo))
+  const onIncrease = async (id: string) => {
+    try {
+      setData((prev: any) =>
+        prev.map((team: any) => (team.id === id ? { ...team, point: team.point + 1 } : team))
+      )
+      await increaseUserScore(id)
+    } catch (error: any) {
+      console.log('onIncrease', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to increase score',
+      })
     }
-  }, [teamInfo])
-
-  const onIncrease = (id: string) => {
-    setTeamInfo((prev) => prev.map((team) => (team.id === id ? { ...team, point: team.point + 1 } : team)))
   }
 
-  const onDecrease = (id: string) => {
-    setTeamInfo((prev) => prev.map((team) => (team.id === id ? { ...team, point: Math.max(team.point - 1, 0) } : team)))
+  const onDecrease = async (id: string) => {
+    try {
+      setData((prev: any) =>
+        prev.map((team: any) => (team.id === id ? { ...team, point: Math.max(team.point - 1, 0) } : team))
+      )
+      await decreaseUserScore(id)
+    } catch (error: any) {
+      console.log('onDecrease', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to decrease score',
+      })
+    }
   }
 
   return (
@@ -48,7 +62,7 @@ const Admin = () => {
         <span>Admin</span>
       </Text>
       <Stack marginTop="20px" gap={10}>
-        {teamInfo.map((item) => (
+        {data.map((item: any) => (
           <Flex key={item.id} gap={2} align="center" justifyContent="space-between">
             <Text fontSize={20} fontWeight="500">
               {item.name} :
