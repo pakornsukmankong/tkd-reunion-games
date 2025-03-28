@@ -49,10 +49,10 @@ const Result = () => {
         {teamInfo.map((item: any, index: number) => (
           <Flex key={item.id} gap={2} align="center" justifyContent="space-between">
             {renderIndex(index)}
-            <Text fontSize={20} fontWeight="500">
+            <Text fontSize={20} fontWeight="500" bgColor="white" p={1} borderRadius="6px">
               {item.name} :
             </Text>
-            <Text fontSize={20} fontWeight="500">
+            <Text fontSize={20} fontWeight="500" bgColor="white" p={1} borderRadius="6px">
               {item.point} Point
             </Text>
           </Flex>
