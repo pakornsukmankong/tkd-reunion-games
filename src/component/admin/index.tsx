@@ -11,8 +11,8 @@ const Admin = () => {
       try {
         const res = await getNurseList()
         setData(res?.data || [])
-      } catch (error:any) {
-        console.log('fetchNurses', error);
+      } catch (error: any) {
+        console.log('fetchNurses', error)
         Swal.fire({
           icon: 'error',
           title: 'Error',
@@ -26,12 +26,10 @@ const Admin = () => {
 
   const onIncrease = async (id: string) => {
     try {
-      setData((prev: any) =>
-        prev.map((team: any) => (team.id === id ? { ...team, point: team.point + 1 } : team))
-      )
+      setData((prev: any) => prev.map((team: any) => (team.id === id ? { ...team, point: team.point + 1 } : team)))
       await increaseUserScore(id)
     } catch (error: any) {
-      console.log('onIncrease', error);
+      console.log('onIncrease', error)
       Swal.fire({
         icon: 'error',
         title: 'Error',
@@ -42,12 +40,10 @@ const Admin = () => {
 
   const onDecrease = async (id: string) => {
     try {
-      setData((prev: any) =>
-        prev.map((team: any) => (team.id === id ? { ...team, point: Math.max(team.point - 1, 0) } : team))
-      )
+      setData((prev: any) => prev.map((team: any) => (team.id === id ? { ...team, point: Math.max(team.point - 1, 0) } : team)))
       await decreaseUserScore(id)
     } catch (error: any) {
-      console.log('onDecrease', error);
+      console.log('onDecrease', error)
       Swal.fire({
         icon: 'error',
         title: 'Error',
@@ -58,7 +54,7 @@ const Admin = () => {
 
   return (
     <Flex width="100%" align="center" justify="center" flexDirection="column" gap="28px">
-      <Text margin={0} fontSize={120} textAlign="center" fontWeight={800} color="white" lineHeight={1}>
+      <Text margin={0} fontSize={{ md: 120 }} textAlign="center" fontWeight={800} color="white" lineHeight={1}>
         <span>Admin</span>
       </Text>
       <Stack marginTop="20px" gap={10}>
