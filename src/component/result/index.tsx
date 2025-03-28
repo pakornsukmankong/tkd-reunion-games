@@ -1,11 +1,10 @@
+import { getNurseList } from '@/api/users'
 import { Box, Flex, Image, Stack, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-const LOCAL_STORAGE_KEY = 'teamInfo'
-
 const Result = () => {
-  const [teamInfo, setTeamInfo] = useState<any>([])
+  const [data, setData] = useState<any>([])
   const Router = useRouter()
 
   const goBack = () => {
@@ -13,15 +12,15 @@ const Result = () => {
   }
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const storedData = localStorage.getItem(LOCAL_STORAGE_KEY)
-      if (storedData) {
-        const parsedData = JSON.parse(storedData)
-        const sortedData = parsedData.sort((a: any, b: any) => b.point - a.point) // Sort by points in descending order
-        setTeamInfo(sortedData)
-      }
+    const fetchNurses = async () => {
+      const res = await getNurseList()
+      setData(res?.data || [])
     }
+
+    fetchNurses()
   }, [])
+
+  const sortedData = data.sort((a: any, b: any) => b.point - a.point)
 
   const renderIndex = (index: number) => {
     if (index === 0) {
@@ -46,7 +45,7 @@ const Result = () => {
         <span>Result</span>
       </Text>
       <Stack marginTop="20px" gap={8}>
-        {teamInfo.map((item: any, index: number) => (
+        {sortedData.map((item: any, index: number) => (
           <Flex key={item.id} gap={2} align="center" justifyContent="space-between">
             {renderIndex(index)}
             <Text fontSize={20} fontWeight="500" bgColor="white" p={1} borderRadius="6px">
