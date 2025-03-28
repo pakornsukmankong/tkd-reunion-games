@@ -23,6 +23,23 @@ const Result = () => {
     }
   }, [])
 
+  const renderIndex = (index: number) => {
+    if (index === 0) {
+      return <Image src="/images/firstMedal.png" alt="firstPrice" width="36px" height="36px" />
+    }
+    if (index === 1) {
+      return <Image src="/images/secondMedal.png" alt="firstPrice" width="36px" height="36px" />
+    }
+    if (index === 2) {
+      return <Image src="/images/thirdMedal.png" alt="firstPrice" width="36px" height="36px" />
+    }
+    return (
+      <Text fontSize={20} fontWeight="500">
+        {index + 1}.
+      </Text>
+    )
+  }
+
   return (
     <Flex width="100%" align="center" justify="center" flexDirection="column" gap="28px">
       <Text margin={0} fontSize={120} textAlign="center" fontWeight={800} color="white" lineHeight={1}>
@@ -31,9 +48,7 @@ const Result = () => {
       <Stack marginTop="20px" gap={10}>
         {teamInfo.map((item: any, index: number) => (
           <Flex key={item.id} gap={2} align="center" justifyContent="space-between">
-            <Text fontSize={20} fontWeight="500">
-              {index + 1}.
-            </Text>
+            {renderIndex(index)}
             <Text fontSize={20} fontWeight="500">
               {item.name} :
             </Text>
